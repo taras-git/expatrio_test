@@ -11,6 +11,8 @@ Credentials are already setup in postman and all you have to do is click send on
 token will be copied directly to collection variables and you can play around with the other apis
 ![image](https://github.com/gogetsu4024/expatrioCodingChallenge/assets/42039041/6fa5fb12-e706-4696-8cd4-69884021ed6d)
 
-link is here -> [click ](https://drive.google.com/drive/folders/1MuyOdR152tvVVctcRwouRiXZAbG9XM5K)   :shipit:
+link is here -> [click ](https://drive.google.com/drive/folders/1MuyOdR152tvVVctcRwouRiXZAbG9XM5K)    :shipit:
+
+
 
 

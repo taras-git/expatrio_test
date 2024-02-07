@@ -15,29 +15,38 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
-            TargetPlatform.android:  CupertinoPageTransitionsBuilder(),
-            TargetPlatform.iOS:  CupertinoPageTransitionsBuilder(),
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
           },
         ),
         canvasColor: Colors.transparent,
         textSelectionTheme: const TextSelectionThemeData(
-          cursorColor:  Color.fromRGBO(65, 171, 158, 1),
-          selectionColor:  Color.fromRGBO(65, 171, 158, 1),
-          selectionHandleColor:  Color.fromRGBO(65, 171, 158, 1),
+          cursorColor: Color.fromRGBO(65, 171, 158, 1),
+          selectionColor: Color.fromRGBO(65, 171, 158, 1),
+          selectionHandleColor: Color.fromRGBO(65, 171, 158, 1),
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: createMaterialColor(Colors.white)).copyWith(
+                primarySwatch: createMaterialColor(Colors.white))
+            .copyWith(
           secondary: createMaterialColor(const Color.fromRGBO(65, 171, 158, 1)),
         ),
         primaryColorDark: Colors.white,
       ),
       home: Scaffold(
-          body: SafeArea(
-            child: Container(
-              color: Colors.white,
+        body: SafeArea(
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                Text('Expatrio'),
+                Text('Email'),
+                Text('Password'),
+                Text('Login'),
+              ],
             ),
           ),
+        ),
       ),
     );
   }
@@ -62,4 +71,3 @@ MaterialColor createMaterialColor(Color color) {
   }
   return MaterialColor(color.value, swatch);
 }
-

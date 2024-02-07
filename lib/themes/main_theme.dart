@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
 
-ThemeData expatrioThemeData() {
-  return ThemeData(
-    pageTransitionsTheme: const PageTransitionsTheme(
-      builders: {
-        TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-      },
+final expatrioThemeData = ThemeData(
+  pageTransitionsTheme: const PageTransitionsTheme(
+    builders: {
+      TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+    },
+  ),
+  canvasColor: Colors.transparent,
+  textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: Color.fromRGBO(65, 171, 158, 1),
+    selectionColor: Color.fromRGBO(65, 171, 158, 1),
+    selectionHandleColor: Color.fromRGBO(65, 171, 158, 1),
+  ),
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+  colorScheme:
+      ColorScheme.fromSwatch(primarySwatch: createMaterialColor(Colors.white))
+          .copyWith(
+    secondary: createMaterialColor(
+      const Color.fromRGBO(65, 171, 158, 1),
     ),
-    canvasColor: Colors.transparent,
-    textSelectionTheme: const TextSelectionThemeData(
-      cursorColor: Color.fromRGBO(65, 171, 158, 1),
-      selectionColor: Color.fromRGBO(65, 171, 158, 1),
-      selectionHandleColor: Color.fromRGBO(65, 171, 158, 1),
-    ),
-    visualDensity: VisualDensity.adaptivePlatformDensity,
-    colorScheme:
-        ColorScheme.fromSwatch(primarySwatch: createMaterialColor(Colors.white))
-            .copyWith(
-      secondary: createMaterialColor(const Color.fromRGBO(65, 171, 158, 1)),
-    ),
-    primaryColorDark: Colors.white,
-  );
-}
+  ),
+  primaryColorDark: Colors.white,
+);
 
 MaterialColor createMaterialColor(Color color) {
   List strengths = <double>[.05];
   Map<int, Color> swatch = <int, Color>{};
+
   final int r = color.red, g = color.green, b = color.blue;
 
   for (int i = 1; i < 10; i++) {

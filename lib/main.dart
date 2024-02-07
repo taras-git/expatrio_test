@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Expatrio Demo',
-      theme: expatrioThemeData(),
+      theme: expatrioThemeData,
       home: const HomeScreen(),
     );
   }

@@ -69,10 +69,21 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
-                FilledButton(
-                  style: buttonStyle,
-                  onPressed: () {},
-                  child: Text('LOGIN'),
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: FilledButton(
+                    style: buttonStyle,
+                    onPressed: () {},
+                    child: const Text(
+                      'LOGIN',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
                 )
               ],
             ),
@@ -84,13 +95,11 @@ class HomeScreen extends StatelessWidget {
 }
 
 final ButtonStyle buttonStyle = FilledButton.styleFrom(
-  textStyle: TextStyle(color: Colors.white),
-  fixedSize: Size(300, 48),
   backgroundColor: expatrioThemeData.colorScheme.secondary,
   foregroundColor: Colors.black87,
-  minimumSize: Size(88, 36),
-  padding: EdgeInsets.symmetric(horizontal: 16),
+  minimumSize: const Size(88, 36),
+  padding: const EdgeInsets.symmetric(horizontal: 16),
   shape: const RoundedRectangleBorder(
-    borderRadius: BorderRadius.all(Radius.circular(20)),
+    borderRadius: BorderRadius.all(Radius.circular(28)),
   ),
 );

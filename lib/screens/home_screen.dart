@@ -1,13 +1,23 @@
+import 'package:coding_challenge/model/user/user.dart';
+import 'package:coding_challenge/providers/data_provider.dart';
+
 import 'package:coding_challenge/themes/main_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({
+class HomeScreen extends ConsumerWidget {
+  HomeScreen({
     super.key,
   });
 
+  final userEmailController = TextEditingController();
+  final userPasswordController = TextEditingController();
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    AsyncValue<User> user;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -29,18 +39,23 @@ class HomeScreen extends StatelessWidget {
                     Text('EMAIL ADDRESS'),
                   ],
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextField(
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                     cursorColor: Colors.black45,
                     autocorrect: false,
                     enableSuggestions: false,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Enter user email:',
                       hintStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(),
                     ),
+                    controller: userEmailController,
+                    onChanged: (value) {
+                      ref.read(userEmailProvider.notifier).state = value;
+                    },
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -53,19 +68,24 @@ class HomeScreen extends StatelessWidget {
                     Text('PASSWORD'),
                   ],
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextField(
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                     cursorColor: Colors.black45,
                     autocorrect: false,
                     enableSuggestions: false,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Enter user password:',
                       hintStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(),
                     ),
+                    controller: userPasswordController,
+                    onChanged: (value) {
+                      ref.read(userPasswordProvider.notifier).state = value;
+                    },
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -74,7 +94,9 @@ class HomeScreen extends StatelessWidget {
                   height: 48,
                   child: FilledButton(
                     style: buttonStyle,
-                    onPressed: () {},
+                    onPressed: () {
+                      user = ref.watch(userProvider);
+                    },
                     child: const Text(
                       'LOGIN',
                       style: TextStyle(
@@ -84,7 +106,12 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
+                const Spacer(),
+                Opacity(
+                  opacity: 0.4,
+                  child: Lottie.asset('assets/login-background.json'),
+                ),
               ],
             ),
           ),

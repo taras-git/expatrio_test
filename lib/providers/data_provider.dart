@@ -4,6 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 String baseEndpoint = "https://dev-api.expatrio.com";
 
+final passwordProvider = StateProvider<bool>((ref) {
+  return true;
+});
+
 /// User Login Details
 ///
 String userLoginEndpoint = "$baseEndpoint/auth/login";

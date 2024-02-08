@@ -73,14 +73,25 @@ class HomeScreen extends ConsumerWidget {
                   child: TextField(
                     style: const TextStyle(color: Colors.black),
                     cursorColor: Colors.black45,
-                    autocorrect: false,
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.visiblePassword,
                     enableSuggestions: false,
-                    obscureText: true,
-                    decoration: const InputDecoration(
+                    obscureText: ref.watch(passwordProvider),
+                    decoration: InputDecoration(
                       hintText: 'Enter user password:',
-                      hintStyle: TextStyle(color: Colors.grey),
-                      border: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(),
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      border: const OutlineInputBorder(),
+                      focusedBorder: const OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                        icon: Icon(ref.read(passwordProvider.notifier).state
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          ref.read(passwordProvider.notifier).state =
+                              !ref.read(passwordProvider.notifier).state;
+                        },
+                        color: expatrioThemeData.colorScheme.secondary,
+                      ),
                     ),
                     controller: userPasswordController,
                     onChanged: (value) {

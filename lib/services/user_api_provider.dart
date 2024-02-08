@@ -32,6 +32,7 @@ class UserLoginApiService {
     );
 
     if (response.statusCode == 200) {
+      print(response.body);
       final user = User.fromJson(
         jsonDecode(response.body),
       );

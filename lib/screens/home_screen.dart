@@ -1,10 +1,11 @@
 import 'package:coding_challenge/model/user/user.dart';
 import 'package:coding_challenge/providers/data_provider.dart';
-
 import 'package:coding_challenge/themes/main_theme.dart';
+import 'package:coding_challenge/widgets/email_widgets.dart';
+import 'package:coding_challenge/widgets/expatrio_graphic.dart';
+import 'package:coding_challenge/widgets/password_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lottie/lottie.dart';
 
 class HomeScreen extends ConsumerWidget {
   HomeScreen({
@@ -15,8 +16,8 @@ class HomeScreen extends ConsumerWidget {
   final userPasswordController = TextEditingController();
 
   @override
-  Widget build(BuildContext context, ref) {
-    AsyncValue<User> user;
+  Widget build(BuildContext context, WidgetRef ref) {
+    AsyncValue<User>? user;
 
     return Scaffold(
       body: SafeArea(
@@ -26,103 +27,23 @@ class HomeScreen extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(horizontal: 36.0, vertical: 24),
             child: Column(
               children: [
-                SizedBox(
-                    width: 200,
-                    child: Image.asset('assets/2019_XP_logo_white.png')),
+                const ExpatrioLogo(),
                 const SizedBox(height: 24),
-                const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Icon(Icons.email_outlined),
-                    ),
-                    Text('EMAIL ADDRESS'),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: TextField(
-                    style: const TextStyle(color: Colors.black),
-                    cursorColor: Colors.black45,
-                    autocorrect: false,
-                    enableSuggestions: false,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter user email:',
-                      hintStyle: TextStyle(color: Colors.grey),
-                      border: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(),
-                    ),
-                    controller: userEmailController,
-                    onChanged: (value) {
-                      ref.read(userEmailProvider.notifier).state = value;
-                    },
-                  ),
+                const EmailTitle(),
+                EmailField(
+                  ref: ref,
+                  userEmailController: userEmailController,
                 ),
                 const SizedBox(height: 24),
-                const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Icon(Icons.lock_outline),
-                    ),
-                    Text('PASSWORD'),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: TextField(
-                    style: const TextStyle(color: Colors.black),
-                    cursorColor: Colors.black45,
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.visiblePassword,
-                    enableSuggestions: false,
-                    obscureText: ref.watch(passwordProvider),
-                    decoration: InputDecoration(
-                      hintText: 'Enter user password:',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      border: const OutlineInputBorder(),
-                      focusedBorder: const OutlineInputBorder(),
-                      suffixIcon: IconButton(
-                        icon: Icon(ref.read(passwordProvider.notifier).state
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                        onPressed: () {
-                          ref.read(passwordProvider.notifier).state =
-                              !ref.read(passwordProvider.notifier).state;
-                        },
-                        color: expatrioThemeData.colorScheme.secondary,
-                      ),
-                    ),
-                    controller: userPasswordController,
-                    onChanged: (value) {
-                      ref.read(userPasswordProvider.notifier).state = value;
-                    },
-                  ),
+                const PasswordTitle(),
+                PasswordField(
+                  ref: ref,
+                  userPasswordController: userPasswordController,
                 ),
                 const SizedBox(height: 24),
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: FilledButton(
-                    style: buttonStyle,
-                    onPressed: () {
-                      user = ref.watch(userProvider);
-                    },
-                    child: const Text(
-                      'LOGIN',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
+                loginButton(user, ref),
                 const Spacer(),
-                Opacity(
-                  opacity: 0.4,
-                  child: Lottie.asset('assets/login-background.json'),
-                ),
+                const AnimatedBackground(),
               ],
             ),
           ),
@@ -130,14 +51,25 @@ class HomeScreen extends ConsumerWidget {
       ),
     );
   }
-}
 
-final ButtonStyle buttonStyle = FilledButton.styleFrom(
-  backgroundColor: expatrioThemeData.colorScheme.secondary,
-  foregroundColor: Colors.black87,
-  minimumSize: const Size(88, 36),
-  padding: const EdgeInsets.symmetric(horizontal: 16),
-  shape: const RoundedRectangleBorder(
-    borderRadius: BorderRadius.all(Radius.circular(28)),
-  ),
-);
+  SizedBox loginButton(AsyncValue<User>? user, WidgetRef ref) {
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: FilledButton(
+        style: buttonStyle,
+        onPressed: () {
+          user = ref.watch(userProvider);
+        },
+        child: const Text(
+          'LOGIN',
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+}

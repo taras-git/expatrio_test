@@ -14,9 +14,11 @@ final expatrioThemeData = ThemeData(
     selectionHandleColor: Color.fromRGBO(65, 171, 158, 1),
   ),
   visualDensity: VisualDensity.adaptivePlatformDensity,
-  colorScheme:
-      ColorScheme.fromSwatch(primarySwatch: createMaterialColor(Colors.white))
-          .copyWith(
+  colorScheme: ColorScheme.fromSwatch(
+    primarySwatch: createMaterialColor(
+      Colors.white,
+    ),
+  ).copyWith(
     secondary: createMaterialColor(
       const Color.fromRGBO(65, 171, 158, 1),
     ),
@@ -44,3 +46,13 @@ MaterialColor createMaterialColor(Color color) {
   }
   return MaterialColor(color.value, swatch);
 }
+
+final ButtonStyle buttonStyle = FilledButton.styleFrom(
+  backgroundColor: expatrioThemeData.colorScheme.secondary,
+  foregroundColor: Colors.black87,
+  minimumSize: const Size(88, 36),
+  padding: const EdgeInsets.symmetric(horizontal: 16),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(28)),
+  ),
+);

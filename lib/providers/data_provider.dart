@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 String baseEndpoint = "https://dev-api.expatrio.com";
 
-final passwordProvider = StateProvider<bool>((ref) {
+final passwordObscureProvider = StateProvider<bool>((ref) {
   return true;
 });
 

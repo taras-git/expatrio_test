@@ -1,4 +1,3 @@
-import 'package:coding_challenge/model/user/user.dart';
 import 'package:coding_challenge/providers/data_provider.dart';
 import 'package:coding_challenge/themes/main_theme.dart';
 import 'package:coding_challenge/widgets/email_widgets.dart';
@@ -17,8 +16,6 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<User>? user;
-
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -41,7 +38,7 @@ class HomeScreen extends ConsumerWidget {
                   userPasswordController: userPasswordController,
                 ),
                 const SizedBox(height: 24),
-                loginButton(user, ref),
+                loginButton(context, ref),
                 const Spacer(),
                 const AnimatedBackground(),
               ],
@@ -52,14 +49,23 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  SizedBox loginButton(AsyncValue<User>? user, WidgetRef ref) {
+  SizedBox loginButton(BuildContext context, WidgetRef ref) {
+    final loggedUser = ref.watch(userProvider);
     return SizedBox(
       width: double.infinity,
       height: 48,
       child: FilledButton(
         style: buttonStyle,
         onPressed: () {
-          user = ref.watch(userProvider);
+          loggedUser.when(data: (data) {
+            showSuccessModalBotomSheet(context);
+          }, error: (error, stk) {
+            showErrorModalBottomSheet(context);
+          }, loading: () {
+            const Center(
+              child: CircularProgressIndicator(),
+            );
+          });
         },
         child: const Text(
           'LOGIN',
@@ -70,6 +76,88 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> showSuccessModalBotomSheet(BuildContext context) {
+    return showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 300,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const SizedBox(height: 20),
+                Icon(
+                  Icons.check_circle_sharp,
+                  color: expatrioThemeData.colorScheme.secondary,
+                  size: 70,
+                ),
+                const SizedBox(height: 20),
+                const Text('Successful Login',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    )),
+                const Text('You will be redirected to your dashboard'),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: 150,
+                  child: FilledButton(
+                    style: buttonStyle,
+                    child: const Text(
+                      'Got it',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    onPressed: () => {},
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> showErrorModalBottomSheet(BuildContext context) {
+    return showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const SizedBox(
+          height: 300,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Icon(
+                  Icons.warning_rounded,
+                  color: Colors.red,
+                  size: 70,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Opps...Something went wrong...',
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

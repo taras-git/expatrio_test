@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:coding_challenge/model/user/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 final userLoginServiceProvider =
     Provider<UserLoginApiService>((ref) => UserLoginApiService());
@@ -13,7 +13,8 @@ final requestHeaders = {
 };
 
 class UserLoginApiService {
-  Future<User> getUser({
+  Future<User> getUser(
+    http.Client client, {
     required String endpoint,
     required String email,
     required String password,
@@ -25,7 +26,7 @@ class UserLoginApiService {
 
     var encodedBody = json.encode(body);
 
-    final response = await post(
+    final response = await client.post(
       Uri.parse(endpoint),
       headers: requestHeaders,
       body: encodedBody,

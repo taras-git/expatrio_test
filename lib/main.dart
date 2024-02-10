@@ -1,5 +1,5 @@
 import 'package:coding_challenge/screens/home_screen.dart';
-import 'package:coding_challenge/screens/tax_data_scree.dart';
+import 'package:coding_challenge/screens/tax_data_screen.dart';
 import 'package:coding_challenge/themes/main_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

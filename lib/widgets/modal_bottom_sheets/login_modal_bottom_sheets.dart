@@ -22,13 +22,10 @@ Future<void> showSuccessModalBotomSheet(BuildContext context, WidgetRef ref) {
                 size: 70,
               ),
               const SizedBox(height: 20),
-              const Text('Successfull Login',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  )),
-              Text('You will be redirected to your dashboard',
+              Text('Successfull Login',
                   style: expatrioThemeData.textTheme.displayMedium),
+              Text('You will be redirected to your dashboard',
+                  style: expatrioThemeData.textTheme.headlineMedium),
               const SizedBox(height: 20),
               SizedBox(
                 width: 150,
@@ -63,31 +60,28 @@ Future<void> showErrorModalBottomSheet(BuildContext context) {
   return showModalBottomSheet<void>(
     context: context,
     builder: (BuildContext context) {
-      return const SizedBox(
+      return SizedBox(
         height: 350,
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Icon(
+              const SizedBox(height: 30),
+              const Icon(
                 Icons.warning_rounded,
                 color: Colors.red,
                 size: 70,
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 10),
+              Text('Ooopps...',
+                  style: expatrioThemeData.textTheme.displayLarge),
+              Text('Something went wrong 🤔',
+                  style: expatrioThemeData.textTheme.displaySmall),
+              const SizedBox(height: 10),
               Text(
-                'Opps...Something went wrong...',
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
-              Text(
-                'Please enter correct credentials and try again',
-                style: TextStyle(fontSize: 18, color: Colors.black),
+                'Please try with correct credentials',
+                style: expatrioThemeData.textTheme.bodyLarge,
               ),
             ],
           ),

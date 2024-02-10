@@ -9,7 +9,7 @@ class ExpatrioLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200,
+      width: 175,
       child: Image.asset('assets/2019_XP_logo_white.png'),
     );
   }

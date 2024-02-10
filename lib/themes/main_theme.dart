@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+const textColor = Colors.black;
+const primaryTextThemeColor = Colors.white;
+
 final expatrioThemeData = ThemeData(
+  useMaterial3: true,
   pageTransitionsTheme: const PageTransitionsTheme(
     builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
@@ -14,17 +18,151 @@ final expatrioThemeData = ThemeData(
     selectionHandleColor: Color.fromRGBO(65, 171, 158, 1),
   ),
   visualDensity: VisualDensity.adaptivePlatformDensity,
-  colorScheme: ColorScheme.fromSwatch(
-    primarySwatch: createMaterialColor(
-      Colors.white,
-    ),
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: primaryTextThemeColor,
   ).copyWith(
     secondary: createMaterialColor(
       const Color.fromRGBO(65, 171, 158, 1),
     ),
   ),
-  primaryColorDark: Colors.white,
-  textTheme: const TextTheme(),
+  primaryColorDark: primaryTextThemeColor,
+  primaryTextTheme: const TextTheme(
+    displayLarge: TextStyle(
+      fontSize: 28,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w700,
+    ),
+    displayMedium: TextStyle(
+      fontSize: 24,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w700,
+    ),
+    displaySmall: TextStyle(
+      fontSize: 22,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w700,
+    ),
+    headlineLarge: TextStyle(
+      fontSize: 20,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w600,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 18,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w600,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: 16,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w600,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 16,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w600,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 14,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w600,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 12,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w600,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 16,
+      color: primaryTextThemeColor,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 14,
+      color: primaryTextThemeColor,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 12,
+      color: primaryTextThemeColor,
+    ),
+    labelLarge: TextStyle(
+      fontSize: 20,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w700,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 18,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w700,
+    ),
+    labelSmall: TextStyle(
+      fontSize: 16,
+      color: primaryTextThemeColor,
+      fontWeight: FontWeight.w700,
+    ),
+  ),
+  textTheme: const TextTheme(
+    displayLarge: TextStyle(
+      fontSize: 30,
+      color: textColor,
+      fontWeight: FontWeight.w700,
+    ),
+    displayMedium: TextStyle(
+      fontSize: 26,
+      color: textColor,
+      fontWeight: FontWeight.w700,
+    ),
+    displaySmall: TextStyle(
+      fontSize: 22,
+      color: textColor,
+      fontWeight: FontWeight.w700,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 18,
+      color: textColor,
+      fontWeight: FontWeight.w400,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: 16,
+      color: textColor,
+      fontWeight: FontWeight.w400,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 22,
+      color: textColor,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 20,
+      color: textColor,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 18,
+      color: textColor,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 18,
+      color: textColor,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 16,
+      color: textColor,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 14,
+      color: textColor,
+    ),
+    labelLarge: TextStyle(
+      fontSize: 16,
+      color: textColor,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 14,
+      color: textColor,
+    ),
+    labelSmall: TextStyle(
+      fontSize: 12,
+      color: textColor,
+    ),
+  ),
 );
 
 MaterialColor createMaterialColor(Color color) {

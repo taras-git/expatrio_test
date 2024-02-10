@@ -37,7 +37,7 @@ class PasswordField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextField(
-        style: const TextStyle(color: Colors.black),
+        style: expatrioThemeData.textTheme.headlineMedium,
         cursorColor: Colors.black45,
         textInputAction: TextInputAction.done,
         keyboardType: TextInputType.visiblePassword,

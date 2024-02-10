@@ -24,6 +24,7 @@ final expatrioThemeData = ThemeData(
     ),
   ),
   primaryColorDark: Colors.white,
+  textTheme: const TextTheme(),
 );
 
 MaterialColor createMaterialColor(Color color) {

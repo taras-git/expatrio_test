@@ -31,7 +31,7 @@ class TaxDataScreen extends ConsumerWidget {
               ),
               Text('Uh-Oh!', style: expatrioThemeData.textTheme.displayMedium),
               const Text('We need your tax data in'),
-              const Text('in order dor you to access'),
+              const Text('order dor you to access'),
               const Text('your account'),
               const SizedBox(height: 16),
               SizedBox(

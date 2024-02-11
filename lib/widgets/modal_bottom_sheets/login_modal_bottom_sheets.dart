@@ -41,8 +41,8 @@ Future<void> showSuccessModalBotomSheet(BuildContext context, WidgetRef ref) {
                   ),
                   onPressed: () {
                     // invalidate the credentials
-                    ref.read(userEmailProvider.notifier).state = '';
-                    ref.read(userPasswordProvider.notifier).state = '';
+                    ref.invalidate(userEmailProvider);
+                    ref.invalidate(userPasswordProvider);
                     context.pop(); // close the Modal sheet
                     context.pushNamed('taxDataScreen');
                   },

@@ -38,7 +38,7 @@ class HomeScreen extends ConsumerWidget {
                   userPasswordController: userPasswordController,
                 ),
                 const SizedBox(height: 20),
-                loginButton(context, ref),
+                const LoginButton(),
                 const Spacer(),
                 const AnimatedBackground(),
               ],

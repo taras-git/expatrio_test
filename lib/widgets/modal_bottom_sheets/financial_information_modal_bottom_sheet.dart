@@ -70,7 +70,9 @@ Future<void> showFinancialInformationModalBotomSheet(
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          showCountriesModalBottomSheet(context);
+                        },
                       ),
                     ),
                   ),
@@ -80,6 +82,27 @@ Future<void> showFinancialInformationModalBotomSheet(
           ),
         );
       });
+    },
+  );
+}
+
+Future<void> showCountriesModalBottomSheet(BuildContext context) {
+  return showModalBottomSheet<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return SizedBox(
+        height: 350,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Expanded(
+                  child: SingleChildScrollView(child: Text('sdfgsdfgsfg'))),
+            ],
+          ),
+        ),
+      );
     },
   );
 }

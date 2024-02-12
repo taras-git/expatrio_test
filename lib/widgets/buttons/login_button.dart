@@ -16,7 +16,6 @@ class _LoginButtomState extends ConsumerState<LoginButton> {
   Widget build(BuildContext context) {
     final email = ref.watch(userEmailProvider);
     final password = ref.watch(userPasswordProvider);
-    final user = ref.watch(userProvider);
 
     return Consumer(builder: (context, ref, child) {
       return SizedBox(
@@ -26,16 +25,19 @@ class _LoginButtomState extends ConsumerState<LoginButton> {
           style: buttonStyle,
           onPressed: email.isEmpty || password.isEmpty
               ? null // disable LOGIN button if user didn't enter email or password
-              : () {
-                  user.when(data: (data) {
-                    showSuccessModalBotomSheet(context, ref);
-                  }, error: (error, stk) {
-                    showErrorModalBottomSheet(context);
-                  }, loading: () {
-                    const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  });
+              : () async {
+                  try {
+                    await ref.read(userProvider.future);
+                    Future.delayed(const Duration(seconds: 0));
+                    if (context.mounted) {
+                      showSuccessModalBotomSheet(context, ref);
+                    }
+                  } on Exception catch (e) {
+                    Future.delayed(const Duration(seconds: 0));
+                    if (context.mounted) {
+                      showErrorModalBottomSheet(context);
+                    }
+                  }
                 },
           child: const Text(
             'LOGIN',
